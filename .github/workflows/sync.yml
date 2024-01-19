@@ -15,10 +15,10 @@ jobs:
         fetch-depth: 0
 
     - name: Pushing to another repository
-      if: ${{ secrets.TARGET_REPO }}
       env:
         TARGET_REPO: ${{ secrets.TARGET_REPO }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      if: env.TARGET_REPO
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
